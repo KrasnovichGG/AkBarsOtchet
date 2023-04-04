@@ -137,6 +137,17 @@ namespace AkBarsOtchet.ALLwin
                 }
             }
         }
+
+        private void tbCostNew_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            {
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
+                    e.Handled = true;
+                }
+            }
+        }
     }
 
     public class MergeData

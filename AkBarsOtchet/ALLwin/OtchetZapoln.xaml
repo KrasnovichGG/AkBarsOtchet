@@ -301,7 +301,7 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" PreviewTextInput="tbCostNew_PreviewTextInput" />
         <Label
             x:Name="LBCOST"
             Grid.Row="2"

@@ -7,7 +7,7 @@
       <Diagram DiagramId="86eb780c1a3e412e85edb10522540c1a" Name="Diagram1">
         <EntityTypeShape EntityType="GoodGayEntities.Consumables" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GoodGayEntities.Object_of_Fixed_Assets" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="GoodGayEntities.Repair_Order" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodGayEntities.Repair_Order" Width="1.5" PointX="7" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GoodGayEntities.S_Divisions" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="GoodGayEntities.S_Posts" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="GoodGayEntities.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />

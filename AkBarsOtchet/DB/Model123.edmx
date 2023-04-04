@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище GoodGayEntities" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище GoodGayEntities" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Consumables">
           <Key>
             <PropertyRef Name="Id_Con" />
@@ -40,6 +40,7 @@
           <Property Name="Note" Type="nvarchar" MaxLength="300" />
           <Property Name="Start_Date_Repair" Type="date" />
           <Property Name="End_Date_Repair" Type="date" />
+          <Property Name="IdUserPrinayl" Type="int" />
         </EntityType>
         <EntityType Name="S_Divisions">
           <Key>
@@ -197,8 +198,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GoodGayEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -242,6 +242,7 @@
           <NavigationProperty Name="Consumables" Relationship="Self.FK_Repair_Order_Consumables" FromRole="Repair_Order" ToRole="Consumables" />
           <NavigationProperty Name="Object_of_Fixed_Assets" Relationship="Self.FK_Repair_Order_Object_of_Fixed_Assets" FromRole="Repair_Order" ToRole="Object_of_Fixed_Assets" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Repair_Order_Users" FromRole="Repair_Order" ToRole="Users" />
+          <Property Name="IdUserPrinayl" Type="Int32" />
         </EntityType>
         <EntityType Name="S_Divisions">
           <Key>
@@ -446,6 +447,7 @@
           <EntitySetMapping Name="Repair_Order">
             <EntityTypeMapping TypeName="GoodGayEntities.Repair_Order">
               <MappingFragment StoreEntitySet="Repair_Order">
+                <ScalarProperty Name="IdUserPrinayl" ColumnName="IdUserPrinayl" />
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="Id_Object" ColumnName="Id_Object" />
                 <ScalarProperty Name="Description_of_Works" ColumnName="Description_of_Works" />
