@@ -21,10 +21,10 @@ namespace AkBarsOtchet.DB
         }
     
         public int Id_Con { get; set; }
-        public int Repair_or_Modern { get; set; }
+        public string Repair_or_Modern { get; set; }
         public string Name { get; set; }
         public string Serial_Number { get; set; }
-        public Nullable<int> BY_or_NEW { get; set; }
+        public string BY_or_NEW { get; set; }
         public Nullable<decimal> Cost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

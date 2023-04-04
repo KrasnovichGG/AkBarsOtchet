@@ -14,6 +14,6 @@ namespace AkBarsOtchet
     /// </summary>
     public partial class App : Application
     {
-        public static GoodGayEntities db = new GoodGayEntities();
+        public static AkBarsMedPracticsEntities db = new AkBarsMedPracticsEntities();
     }
 }

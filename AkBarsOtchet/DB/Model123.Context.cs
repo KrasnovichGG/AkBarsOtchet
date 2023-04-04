@@ -15,10 +15,10 @@ namespace AkBarsOtchet.DB
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class GoodGayEntities : DbContext
+    public partial class AkBarsMedPracticsEntities : DbContext
     {
-        public GoodGayEntities()
-            : base("name=GoodGayEntities")
+        public AkBarsMedPracticsEntities()
+            : base("name=AkBarsMedPracticsEntities")
         {
         }
     

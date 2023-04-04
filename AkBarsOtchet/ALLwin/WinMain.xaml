@@ -140,7 +140,7 @@
             BorderBrush="#006637"
             BorderThickness="3"
             Content="Формирование отчёта"
-            Cursor="Hand" Click="btnOtchet_Click" />
+            Cursor="Hand"  />
         <Button
             x:Name="btnProsmotrJornal"
             Grid.Row="3"

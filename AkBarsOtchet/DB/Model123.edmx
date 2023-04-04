@@ -4,16 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище GoodGayModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище GoodGayEntities" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Consumables">
           <Key>
             <PropertyRef Name="Id_Con" />
           </Key>
           <Property Name="Id_Con" Type="int" Nullable="false" />
-          <Property Name="Repair_or_Modern" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Repair_or_Modern" Type="nvarchar" MaxLength="100" />
           <Property Name="Name" Type="nvarchar" MaxLength="300" />
           <Property Name="Serial_Number" Type="nvarchar" MaxLength="100" />
-          <Property Name="BY_or_NEW" Type="int" />
+          <Property Name="BY_or_NEW" Type="nvarchar" MaxLength="100" />
           <Property Name="Cost" Type="numeric" Precision="15" Scale="2" />
         </EntityType>
         <EntityType Name="Object_of_Fixed_Assets">
@@ -168,7 +168,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище GoodGayModelContainer">
+        <EntityContainer Name="Хранилище GoodGayEntitiesContainer">
           <EntitySet Name="Consumables" EntityType="Self.Consumables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Object_of_Fixed_Assets" EntityType="Self.Object_of_Fixed_Assets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Repair_Order" EntityType="Self.Repair_Order" Schema="dbo" store:Type="Tables" />
@@ -201,16 +201,16 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="GoodGayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="GoodGayEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Consumables">
           <Key>
             <PropertyRef Name="Id_Con" />
           </Key>
           <Property Name="Id_Con" Type="Int32" Nullable="false" />
-          <Property Name="Repair_or_Modern" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Repair_or_Modern" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Serial_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BY_or_NEW" Type="Int32" />
+          <Property Name="BY_or_NEW" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Cost" Type="Decimal" Precision="15" Scale="2" />
           <NavigationProperty Name="Repair_Order" Relationship="Self.FK_Repair_Order_Consumables" FromRole="Consumables" ToRole="Repair_Order" />
         </EntityType>
@@ -344,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GoodGayEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AkBarsMedPracticsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Consumables" EntityType="Self.Consumables" />
           <EntitySet Name="Object_of_Fixed_Assets" EntityType="Self.Object_of_Fixed_Assets" />
           <EntitySet Name="Repair_Order" EntityType="Self.Repair_Order" />
@@ -388,11 +388,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GoodGayModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GoodGayEntities.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GoodGayModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GoodGayEntities.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -419,9 +419,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище GoodGayModelContainer" CdmEntityContainer="GoodGayEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GoodGayEntitiesContainer" CdmEntityContainer="AkBarsMedPracticsEntities">
           <EntitySetMapping Name="Consumables">
-            <EntityTypeMapping TypeName="GoodGayModel.Consumables">
+            <EntityTypeMapping TypeName="GoodGayEntities.Consumables">
               <MappingFragment StoreEntitySet="Consumables">
                 <ScalarProperty Name="Id_Con" ColumnName="Id_Con" />
                 <ScalarProperty Name="Repair_or_Modern" ColumnName="Repair_or_Modern" />
@@ -433,7 +433,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Object_of_Fixed_Assets">
-            <EntityTypeMapping TypeName="GoodGayModel.Object_of_Fixed_Assets">
+            <EntityTypeMapping TypeName="GoodGayEntities.Object_of_Fixed_Assets">
               <MappingFragment StoreEntitySet="Object_of_Fixed_Assets">
                 <ScalarProperty Name="Id_Object" ColumnName="Id_Object" />
                 <ScalarProperty Name="Name_Obj" ColumnName="Name_Obj" />
@@ -444,7 +444,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Repair_Order">
-            <EntityTypeMapping TypeName="GoodGayModel.Repair_Order">
+            <EntityTypeMapping TypeName="GoodGayEntities.Repair_Order">
               <MappingFragment StoreEntitySet="Repair_Order">
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="Id_Object" ColumnName="Id_Object" />
@@ -460,7 +460,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="S_Divisions">
-            <EntityTypeMapping TypeName="GoodGayModel.S_Divisions">
+            <EntityTypeMapping TypeName="GoodGayEntities.S_Divisions">
               <MappingFragment StoreEntitySet="S_Divisions">
                 <ScalarProperty Name="S_Id_Division" ColumnName="S_Id_Division" />
                 <ScalarProperty Name="Name_Division" ColumnName="Name_Division" />
@@ -468,7 +468,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="S_Posts">
-            <EntityTypeMapping TypeName="GoodGayModel.S_Posts">
+            <EntityTypeMapping TypeName="GoodGayEntities.S_Posts">
               <MappingFragment StoreEntitySet="S_Posts">
                 <ScalarProperty Name="S_Id_Post" ColumnName="S_Id_Post" />
                 <ScalarProperty Name="Name_Post" ColumnName="Name_Post" />
@@ -476,7 +476,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="GoodGayModel.sysdiagrams">
+            <EntityTypeMapping TypeName="GoodGayEntities.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -487,7 +487,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="GoodGayModel.Users">
+            <EntityTypeMapping TypeName="GoodGayEntities.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id_User" ColumnName="Id_User" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
@@ -499,20 +499,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище GoodGayModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище GoodGayModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище GoodGayModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище GoodGayModel.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище GoodGayEntities.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище GoodGayEntities.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище GoodGayEntities.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище GoodGayEntities.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GoodGayModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="GoodGayEntities.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище GoodGayModel.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище GoodGayEntities.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GoodGayModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="GoodGayEntities.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -521,8 +521,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище GoodGayModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище GoodGayModel.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище GoodGayEntities.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище GoodGayEntities.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
