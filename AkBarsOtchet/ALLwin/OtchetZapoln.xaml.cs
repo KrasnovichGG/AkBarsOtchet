@@ -24,6 +24,8 @@ namespace AkBarsOtchet.ALLwin
         public OtchetZapoln()
         {
             InitializeComponent();
+            CmbBoxUserSdal.ItemsSource = App.db.Users.Where(x => x.isSup == true).ToList();
+            UserPrinual.ItemsSource = App.db.Users.Where(x => x.isSup == false).ToList();
             feelcmb();
         }
         
@@ -33,6 +35,7 @@ namespace AkBarsOtchet.ALLwin
             cmbboxbynew.Items.Add("Б/У");
             cmboxModern.Items.Add("Ремонт");
             cmboxModern.Items.Add("Модернизация");
+           
         }
         private void btnSaveOtchet_Click(object sender, RoutedEventArgs e)
         {
@@ -46,6 +49,8 @@ namespace AkBarsOtchet.ALLwin
                 var mergeData = new MergeData();
                 var objFirst = new List<ObjectRepair1>() { new ObjectRepair1() };
                 var objSecond = new List<ObjectRepair2>() { new ObjectRepair2() };
+                mergeData.UserPrinal = (Users)UserPrinual.SelectedItem;
+                mergeData.UserSdal = (Users)CmbBoxUserSdal.SelectedItem;
                 objFirst[0].MainObject = tbNameOBJ.Text.Trim();
                 objFirst[0].InventoryNumber = tbinventNumber.Text.Trim();
                 objFirst[0].ReplacementCost = tb_ReplacementCost.Text.Trim();
@@ -80,8 +85,8 @@ namespace AkBarsOtchet.ALLwin
                 oXL.Visible = false;
                 oWB = oXL.Workbooks.Open(@"C:\Users\Lapte\Desktop\ОтчётАкБарсМед.xlsx");
                 oSheet = oWB.Worksheets[1];
-                oSheet.get_Range("A1", "H1").Font.Bold = true;
-                oSheet.get_Range("A1", "H1").VerticalAlignment =
+                oSheet.get_Range("A19", "FW15").Font.Bold = true;
+                oSheet.get_Range("A19", "FW25").VerticalAlignment =
                 XlVAlign.xlVAlignCenter;
                 oSheet.Cells[10, 65] = objects.DateSost;
                 oSheet.Cells[8, 165] = objects.DateZayvka; // строка, столбец  // формула: 26 * номер первой буквы включительно + кол-во букв до второй буквы включительно
@@ -101,6 +106,10 @@ namespace AkBarsOtchet.ALLwin
                 oSheet.Cells[25, 129] = objects.ObjRepair2[0].ByOrNew; //Б\У или Новая DY25
                 oSheet.Cells[25, 138] = objects.ObjRepair2[0].Cost; //Стоимость(для новых) EH25
                 oSheet.Cells[25, 150] = objects.ObjRepair2[0].Note; //Примечание ET25
+                oSheet.Cells[50, 90] = objects.UserSdal.FIO; //Расшифровка подписи сапорта CL50 вылетает какая-то неизвесная ошибка(страшная)
+                oSheet.Cells[50, 29] = objects.UserSdal.S_Posts.Name_Post; //Должность сапорта AC50
+                oSheet.Cells[53, 90] = objects.UserPrinal.FIO; //Расшифровка подписи не сапорта CL53
+                oSheet.Cells[53, 29] = objects.UserPrinal.S_Posts.Name_Post; //Должность не сапорта несапорта AC53
                 oXL.Visible = true;
                 oXL.UserControl = true;
             }
@@ -148,6 +157,8 @@ namespace AkBarsOtchet.ALLwin
                 }
             }
         }
+
+     
     }
 
     public class MergeData
