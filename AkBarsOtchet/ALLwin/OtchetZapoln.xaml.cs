@@ -24,24 +24,50 @@ namespace AkBarsOtchet.ALLwin
         public OtchetZapoln()
         {
             InitializeComponent();
+            feelcmb();
         }
-
+        
+        private void feelcmb()
+        {
+            cmbboxbynew.Items.Add("Новая");
+            cmbboxbynew.Items.Add("Б/У");
+            cmboxModern.Items.Add("Ремонт");
+            cmboxModern.Items.Add("Модернизация");
+        }
         private void btnSaveOtchet_Click(object sender, RoutedEventArgs e)
         {
-            var mergeData = new MergeData();
-            var objFirst = new List<ObjectRepair1>() { new ObjectRepair1() };
-            objFirst[0].MainObject = tbNameOBJ.Text.Trim();
-            objFirst[0].InventoryNumber = tbinventNumber.Text.Trim();
-            objFirst[0].ReplacementCost = tb_ReplacementCost.Text.Trim();
-            objFirst[0].ActuallyServiceLive = tb_ActualServiceLife.Text.Trim();
-            objFirst[0].DamageDefects = tb_Damage_def.Text.Trim();
-            objFirst[0].TypeRepairObj = tbTypeRepair.Text.Trim();
-            mergeData.DateSost = DateTime.Now.ToString("dd.MM.yyyy");
-            mergeData.DateZayvka = DateTime.Now.ToString("dd.MM.yyyy");
-            mergeData.DateStartRepair = DateTime.Now.ToString("dd.MM.yyyy");
-            mergeData.DateEndRepair = DateTime.Now.ToString("dd.MM.yyyy");
-            mergeData.ObjRepair1 = objFirst;
-            SetDataExcel(mergeData);
+            if (tbNameOBJ.Text == "" || tbinventNumber.Text == "" || tb_Damage_def.Text == "" || cmbboxbynew.SelectedIndex == -1)
+            {
+                MessageBox.Show("Поля, такие как : Объект основных средств, Инвентарный номер, Дефекты и повреждения, б/у или новая. Должны быть заполнены в обязательном порядке!","Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
+            else
+            {
+                var mergeData = new MergeData();
+                var objFirst = new List<ObjectRepair1>() { new ObjectRepair1() };
+                var objSecond = new List<ObjectRepair2>() { new ObjectRepair2() };
+                objFirst[0].MainObject = tbNameOBJ.Text.Trim();
+                objFirst[0].InventoryNumber = tbinventNumber.Text.Trim();
+                objFirst[0].ReplacementCost = tb_ReplacementCost.Text.Trim();
+                objFirst[0].ActuallyServiceLive = tb_ActualServiceLife.Text.Trim();
+                objFirst[0].DamageDefects = tb_Damage_def.Text.Trim();
+                objFirst[0].TypeRepairObj = tbTypeRepair.Text.Trim();
+                objSecond[0].MainObject = ($"{tbNameOBJ.Text.Trim()} инф.номер {tbinventNumber.Text.Trim()}");
+                objSecond[0].DescriptionOfWorks = tb_Description.Text.Trim();
+                objSecond[0].RepairOrModern = cmboxModern.Text.Trim();
+                objSecond[0].NameConsmbles = tbnamecost.Text.Trim();
+                objSecond[0].SerialNumber = tbserialnumber.Text.Trim();
+                objSecond[0].ByOrNew = cmbboxbynew.Text.Trim();
+                objSecond[0].Cost = tbCostNew.Text.Trim();
+                objSecond[0].Note = tbNote.Text.Trim();
+                mergeData.DateSost = DateTime.Now.ToString("dd.MM.yyyy");
+                mergeData.DateZayvka = DateTime.Now.ToString("dd.MM.yyyy");
+                mergeData.DateStartRepair = DateTime.Now.ToString("dd.MM.yyyy");
+                mergeData.DateEndRepair = DateTime.Now.ToString("dd.MM.yyyy");
+                mergeData.ObjRepair1 = objFirst;
+                mergeData.ObjRepair2 = objSecond;
+                SetDataExcel(mergeData);
+            }
         }
         public static void SetDataExcel(MergeData objects)
         {
@@ -67,6 +93,14 @@ namespace AkBarsOtchet.ALLwin
                 oSheet.Cells[18, 94] = objects.ObjRepair1[0].ActuallyServiceLive; //Фактический срок Экплуатации CP18
                 oSheet.Cells[18, 108] = objects.ObjRepair1[0].DamageDefects; //Дефекты и повреждения DD18
                 oSheet.Cells[18, 152] = objects.ObjRepair1[0].TypeRepairObj; //Виды работ по устранению дефекта EV18
+                oSheet.Cells[25, 9] = objects.ObjRepair2[0].MainObject; //Объект основных средств 2.1 I25
+                oSheet.Cells[25, 45] = objects.ObjRepair2[0].DescriptionOfWorks; //Описание работ AS25
+                oSheet.Cells[25, 74] = objects.ObjRepair2[0].RepairOrModern; //Ремонт или Модернизация BV25
+                oSheet.Cells[25, 89] = objects.ObjRepair2[0].NameConsmbles; //Наименование расходника CK25
+                oSheet.Cells[25, 108] = objects.ObjRepair2[0].SerialNumber; //Серийный номер DD25
+                oSheet.Cells[25, 129] = objects.ObjRepair2[0].ByOrNew; //Б\У или Новая DY25
+                oSheet.Cells[25, 138] = objects.ObjRepair2[0].Cost; //Стоимость(для новых) EH25
+                oSheet.Cells[25, 150] = objects.ObjRepair2[0].Note; //Примечание ET25
                 oXL.Visible = true;
                 oXL.UserControl = true;
             }
@@ -79,6 +113,28 @@ namespace AkBarsOtchet.ALLwin
                 errorMessage = String.Concat(errorMessage, theException.Source);
 
                 Console.WriteLine(errorMessage, "Error");
+            }
+        }
+
+        private void tb_ReplacementCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            {
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    MessageBox.Show("Вводить только цифры!","Только только цифры",MessageBoxButton.OK,MessageBoxImage.Error);
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void tb_ActualServiceLife_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            {
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
+                    e.Handled = true;
+                }
             }
         }
     }
@@ -142,6 +198,10 @@ namespace AkBarsOtchet.ALLwin
     public class ObjectRepair2
 
     {
+        public ObjectRepair2()
+        {
+        }
+
         public ObjectRepair2(int number, string mainObject, string descriptionOfWorks, string repairOrModern, string nameConsmbles, string serialNumber, string byOrNew, string cost, string note)
         {
             Number = number;

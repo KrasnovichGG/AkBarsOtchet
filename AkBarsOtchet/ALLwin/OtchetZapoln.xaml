@@ -41,8 +41,10 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
+            MaxLength="300"
             Text="TextBox"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap"
+            ToolTip="Обязательно для заполнения!" />
         <TextBox
             x:Name="tbinventNumber"
             Grid.Row="1"
@@ -58,8 +60,10 @@
             Cursor="Pen"
             FontSize="12"
             FontStyle="Italic"
+            MaxLength="100"
             Text="TextBox"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap"
+            ToolTip="Обязательно для заполнения!" />
         <TextBox
             x:Name="tb_ActualServiceLife"
             Grid.Row="3"
@@ -75,7 +79,8 @@
             Cursor="Pen"
             FontSize="12"
             FontStyle="Italic"
-            Text="TextBox"
+            MaxLength="10"
+            PreviewTextInput="tb_ActualServiceLife_PreviewTextInput"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="tb_ReplacementCost"
@@ -92,7 +97,7 @@
             Cursor="Pen"
             FontSize="12"
             FontStyle="Italic"
-            Text="TextBox"
+            PreviewTextInput="tb_ReplacementCost_PreviewTextInput"
             TextWrapping="Wrap" />
         <Label
             x:Name="lbobj"
@@ -141,8 +146,10 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
+            MaxLength="500"
             Text="TextBox"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap"
+            ToolTip="Обязательно для заполнения!" />
         <Label
             x:Name="lb_dam"
             Grid.Column="1"
@@ -168,7 +175,7 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            Text="TextBox"
+            MaxLength="500"
             TextWrapping="Wrap" />
         <Label
             x:Name="lbRepair"
@@ -196,7 +203,7 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            Text="TextBox"
+            MaxLength="300"
             TextWrapping="Wrap" />
         <Label
             x:Name="lb_description"
@@ -207,25 +214,6 @@
             VerticalAlignment="Top"
             Content="Описание работ"
             FontSize="12" />
-        <TextBox
-            x:Name="tb_Modern"
-            Grid.Row="3"
-            Grid.Column="1"
-            Width="200"
-            Height="62"
-            Margin="0,28,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            BorderBrush="#006637"
-            BorderThickness="3"
-            Cursor="Pen"
-            FontSize="12"
-            FontStyle="Italic"
-            FontWeight="Normal"
-            Text="TextBox"
-            TextWrapping="Wrap" />
         <Label
             x:Name="lbModern"
             Grid.Row="3"
@@ -251,7 +239,6 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            Text="TextBox"
             TextWrapping="Wrap" />
         <Label
             x:Name="lbnamecons"
@@ -278,7 +265,6 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            Text="TextBox"
             TextWrapping="Wrap" />
         <Label
             x:Name="lbserialNumber"
@@ -289,25 +275,6 @@
             VerticalAlignment="Top"
             Content="Серийный номер"
             FontSize="12" />
-        <TextBox
-            x:Name="tbBYNEW"
-            Grid.Row="2"
-            Grid.Column="2"
-            Width="200"
-            Height="62"
-            Margin="63,28,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            BorderBrush="#006637"
-            BorderThickness="3"
-            Cursor="Pen"
-            FontSize="12"
-            FontStyle="Italic"
-            FontWeight="Normal"
-            Text="TextBox"
-            TextWrapping="Wrap" />
         <Label
             x:Name="lbBYNEW"
             Grid.Row="2"
@@ -318,7 +285,7 @@
             Content="Б/У или новая"
             FontSize="12" />
         <TextBox
-            x:Name="tbBYNEW_Copy"
+            x:Name="tbCostNew"
             Grid.Row="3"
             Grid.Column="2"
             Width="200"
@@ -334,7 +301,6 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            Text="TextBox"
             TextWrapping="Wrap" />
         <Label
             x:Name="LBCOST"
@@ -362,7 +328,6 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            Text="TextBox"
             TextWrapping="Wrap" />
         <Label
             x:Name="lbNote"
@@ -385,6 +350,31 @@
             BorderThickness="3"
             Click="btnSaveOtchet_Click"
             Content="Сформировать отчёт" />
+
+
+        <Border
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="61,30,60,8"
+            BorderBrush="#006637"
+            BorderThickness="3">
+            <ComboBox
+                x:Name="cmboxModern"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" />
+        </Border>
+        <Border
+            Grid.Row="2"
+            Grid.Column="2"
+            Margin="63,28,58,10"
+            BorderBrush="#006637"
+            BorderThickness="3">
+            <ComboBox
+                x:Name="cmbboxbynew"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                ToolTip="Обязательно для заполнения!" />
+        </Border>
 
     </Grid>
 </Window>
