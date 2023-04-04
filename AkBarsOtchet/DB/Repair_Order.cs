@@ -24,6 +24,7 @@ namespace AkBarsOtchet.DB
         public string Note { get; set; }
         public Nullable<System.DateTime> Start_Date_Repair { get; set; }
         public Nullable<System.DateTime> End_Date_Repair { get; set; }
+        public Nullable<int> IdUserPrinayl { get; set; }
     
         public virtual Consumables Consumables { get; set; }
         public virtual Object_of_Fixed_Assets Object_of_Fixed_Assets { get; set; }
