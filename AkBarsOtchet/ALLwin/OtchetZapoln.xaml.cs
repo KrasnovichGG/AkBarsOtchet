@@ -27,21 +27,23 @@ namespace AkBarsOtchet.ALLwin
             CmbBoxUserSdal.ItemsSource = App.db.Users.Where(x => x.isSup == true).ToList();
             UserPrinual.ItemsSource = App.db.Users.Where(x => x.isSup == false).ToList();
             feelcmb();
+            dpStart.SelectedDate = DateTime.Now;
+            dpEnd.SelectedDate = DateTime.Now;
         }
-        
+
         private void feelcmb()
         {
             cmbboxbynew.Items.Add("Новая");
             cmbboxbynew.Items.Add("Б/У");
             cmboxModern.Items.Add("Ремонт");
             cmboxModern.Items.Add("Модернизация");
-           
+
         }
         private void btnSaveOtchet_Click(object sender, RoutedEventArgs e)
         {
             if (tbNameOBJ.Text == "" || tbinventNumber.Text == "" || tb_Damage_def.Text == "" || cmbboxbynew.SelectedIndex == -1)
             {
-                MessageBox.Show("Поля, такие как : Объект основных средств, Инвентарный номер, Дефекты и повреждения, б/у или новая. Должны быть заполнены в обязательном порядке!","Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Поля, такие как : Объект основных средств, Инвентарный номер, Дефекты и повреждения, б/у или новая. Должны быть заполнены в обязательном порядке!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
@@ -67,8 +69,8 @@ namespace AkBarsOtchet.ALLwin
                 objSecond[0].Note = tbNote.Text.Trim();
                 mergeData.DateSost = DateTime.Now.ToString("dd.MM.yyyy");
                 mergeData.DateZayvka = DateTime.Now.ToString("dd.MM.yyyy");
-                mergeData.DateStartRepair = DateTime.Now.ToString("dd.MM.yyyy");
-                mergeData.DateEndRepair = DateTime.Now.ToString("dd.MM.yyyy");
+                mergeData.DateStartRepair = Convert.ToDateTime(dpStart.SelectedDate).ToString("dd.MM.yyyy");
+                mergeData.DateEndRepair = Convert.ToDateTime(dpEnd.SelectedDate).ToString("dd.MM.yyyy");
                 mergeData.ObjRepair1 = objFirst;
                 mergeData.ObjRepair2 = objSecond;
                 SetDataExcel(mergeData);
@@ -90,8 +92,8 @@ namespace AkBarsOtchet.ALLwin
                 XlVAlign.xlVAlignCenter;
                 oSheet.Cells[10, 65] = objects.DateSost;
                 oSheet.Cells[8, 165] = objects.DateZayvka; // строка, столбец  // формула: 26 * номер первой буквы включительно + кол-во букв до второй буквы включительно
-                oSheet.Cells[9, 165] = objects.DateStartRepair; 
-                oSheet.Cells[10, 165] = objects.DateEndRepair; 
+                oSheet.Cells[9, 165] = objects.DateStartRepair;
+                oSheet.Cells[10, 165] = objects.DateEndRepair;
                 oSheet.Cells[18, 11] = objects.ObjRepair1[0].MainObject; //Объект основных средств K18
                 oSheet.Cells[18, 51] = objects.ObjRepair1[0].InventoryNumber; //Инвентарный номер AY18
                 oSheet.Cells[18, 69] = objects.ObjRepair1[0].ReplacementCost; //Восстановительная стоимость BQ18
@@ -127,38 +129,103 @@ namespace AkBarsOtchet.ALLwin
 
         private void tb_ReplacementCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+
+            if (!Char.IsDigit(e.Text, 0))
             {
-                if (!Char.IsDigit(e.Text, 0))
-                {
-                    MessageBox.Show("Вводить только цифры!","Только только цифры",MessageBoxButton.OK,MessageBoxImage.Error);
-                    e.Handled = true;
-                }
+                MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
             }
+
         }
 
         private void tb_ActualServiceLife_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            if (!Char.IsDigit(e.Text, 0))
             {
-                if (!Char.IsDigit(e.Text, 0))
-                {
-                    MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
-                    e.Handled = true;
-                }
+                MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
             }
         }
 
         private void tbCostNew_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+
+            if (!Char.IsDigit(e.Text, 0))
             {
-                if (!Char.IsDigit(e.Text, 0))
-                {
-                    MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
-                    e.Handled = true;
-                }
+                MessageBox.Show("Вводить только цифры!", "Только только цифры", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
             }
+
         }
 
-     
+        private void bntADDtoDB_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbNameOBJ.Text == "" || tbinventNumber.Text == "" || tb_Damage_def.Text == "" || cmbboxbynew.SelectedIndex == -1)
+            {
+                MessageBox.Show("Поля, такие как : Объект основных средств, Инвентарный номер, Дефекты и повреждения, б/у или новая. Должны быть заполнены в обязательном порядке!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else
+            {
+                var Cons = new Consumables();
+                {
+                    Cons.Id_Con = Cons.Id_Con;
+                    Cons.Repair_or_Modern = cmboxModern.Text.Trim();
+                    Cons.Name = tbnamecost.Text.Trim();
+                    Cons.Serial_Number = tbserialnumber.Text.Trim();
+                    Cons.BY_or_NEW = cmbboxbynew.Text.Trim();
+                    Cons.Cost = Convert.ToDecimal(tbCostNew.Text.Trim());
+                }
+                App.db.Consumables.Add(Cons);
+                var Obj = new Object_of_Fixed_Assets();
+                {
+                    Obj.Id_Object = Obj.Id_Object;
+                    Obj.Name_Obj = tbNameOBJ.Text.Trim();
+                    Obj.Inventory_Number = tbinventNumber.Text.Trim();
+                    Obj.Replacement_Cost = Convert.ToDecimal(tb_ReplacementCost.Text.Trim());
+                    if (tb_ActualServiceLife.Text == "1")
+                    {
+                        Obj.Actual_Service_Life = $"{tb_ActualServiceLife.Text}" + " год";
+                    }
+                    else if (tb_ActualServiceLife.Text == "2")
+                    {
+                        Obj.Actual_Service_Life = $"{tb_ActualServiceLife.Text}" + " года";
+                    }
+                    else if (tb_ActualServiceLife.Text == "3")
+                    {
+                        Obj.Actual_Service_Life = $"{tb_ActualServiceLife.Text}" + " года";
+                    }
+                    else if (tb_ActualServiceLife.Text == "4")
+                    {
+                        Obj.Actual_Service_Life = $"{tb_ActualServiceLife.Text}" + " года";
+                    }
+                    else
+                    {
+                        Obj.Actual_Service_Life = $"{tb_ActualServiceLife.Text}" + " лет";
+                    }
+                }
+                App.db.Object_of_Fixed_Assets.Add(Obj);
+                var OrderRepair = new Repair_Order();
+                {
+                    OrderRepair.Id_Order = OrderRepair.Id_Order;
+                    OrderRepair.Id_Object = Obj.Id_Object;
+                    OrderRepair.Description_of_Works = tb_Description.Text.Trim();
+                    OrderRepair.Id_Con = Cons.Id_Con;
+                    OrderRepair.Damage_Defects = tb_Damage_def.Text.Trim();
+                    OrderRepair.Type_Repair_Obj = tbTypeRepair.Text.Trim();
+                    OrderRepair.Id_User = (CmbBoxUserSdal.SelectedItem as Users).Id_User;
+                    OrderRepair.Note = tbNote.Text.Trim();
+                    OrderRepair.Start_Date_Repair = dpStart.SelectedDate;
+                    OrderRepair.End_Date_Repair = dpEnd.SelectedDate;
+                    OrderRepair.IdUserPrinayl = (UserPrinual.SelectedItem as Users).Id_User;
+                }
+                App.db.Repair_Order.Add(OrderRepair);
+                App.db.SaveChanges();
+                MessageBox.Show("Успешно!");
+
+
+            }
+        }
     }
 
     public class MergeData

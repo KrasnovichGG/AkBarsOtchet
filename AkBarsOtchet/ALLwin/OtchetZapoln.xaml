@@ -426,6 +426,49 @@
             VerticalAlignment="Top"
             Content="Объект Принял:"
             FontSize="10" />
+        <Button
+            x:Name="bntADDtoDB"
+            Grid.Row="4"
+            Grid.Column="2"
+            Width="172"
+            Height="60"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="White"
+            BorderBrush="#006637"
+            BorderThickness="3"
+            Click="bntADDtoDB_Click"
+            Content="Добавить отчёт в БД" />
+        <DatePicker
+            x:Name="dpStart"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="26,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" />
+        <DatePicker
+            x:Name="dpEnd"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="170,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" />
+        <Label
+            x:Name="lbstart"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="22,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Начало ремонта" />
+        <Label
+            x:Name="lbend"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="171,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Конец ремонта" />
 
 
     </Grid>

@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id_Con" />
           </Key>
-          <Property Name="Id_Con" Type="int" Nullable="false" />
+          <Property Name="Id_Con" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Repair_or_Modern" Type="nvarchar" MaxLength="100" />
           <Property Name="Name" Type="nvarchar" MaxLength="300" />
           <Property Name="Serial_Number" Type="nvarchar" MaxLength="100" />
