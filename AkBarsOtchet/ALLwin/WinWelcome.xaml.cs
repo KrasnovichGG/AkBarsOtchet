@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AkBarsOtchet.ALLwin;
+using AkBarsOtchet.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,41 @@ namespace AkBarsOtchet
         public WinWelcome()
         {
             InitializeComponent();
+        }
+
+        private void btnAuth_Click(object sender, RoutedEventArgs e)
+        {
+            AuthUser();
+        }
+        private void AuthUser()
+        {
+            if (tbLog.Text == "" || pbPass.Password == "")
+            {
+                MessageBox.Show("Неоставляйте поля логина и пароля не заполненными!", "Ошибочка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else foreach (var user in App.db.Users)
+                {
+                    if (user.Login_User == tbLog.Text.Trim())
+                    {
+                        if (user.Password_User == pbPass.Password.Trim())
+                        {
+                            MessageBox.Show($"Добро пожаловать:  {user.FIO}", "С возвращением!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            App.users = user;
+                            WinMain winMain = new WinMain();
+                            winMain.Show();
+                            Close();
+                            //В приложение будет заходить Сотрудник техпоодержки или Обычный сотрудник?
+                        }
+                    }
+                }
+            if (App.users == null)
+            {
+                MessageBox.Show("Такого пользователя не существует!", "Что-то не так", MessageBoxButton.OK, MessageBoxImage.Error);
+                tbLog.Clear();
+                pbPass.Clear();
+                return;
+            }
         }
     }
 }

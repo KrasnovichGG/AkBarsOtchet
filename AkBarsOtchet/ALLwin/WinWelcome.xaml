@@ -92,7 +92,7 @@
             BorderThickness="3"
             Content="Войти"
             Cursor="Hand"
-            ToolTip="log in to the app" />
+            ToolTip="log in to the app" Click="btnAuth_Click" />
 
     </Grid>
 </Window>

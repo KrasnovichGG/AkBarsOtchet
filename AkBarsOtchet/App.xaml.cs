@@ -15,5 +15,6 @@ namespace AkBarsOtchet
     public partial class App : Application
     {
         public static AkBarsMedPracticsEntities db = new AkBarsMedPracticsEntities();
+        public static Users users;
     }
 }

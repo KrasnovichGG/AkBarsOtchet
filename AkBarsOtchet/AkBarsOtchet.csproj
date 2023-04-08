@@ -68,7 +68,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ALLwin\WinAllemployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ALLwin\WinMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ALLwin\WinSup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,8 +87,14 @@
     <Compile Include="ALLwin\OtchetZapoln.xaml.cs">
       <DependentUpon>OtchetZapoln.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ALLwin\WinAllemployee.xaml.cs">
+      <DependentUpon>WinAllemployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ALLwin\WinMain.xaml.cs">
       <DependentUpon>WinMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ALLwin\WinSup.xaml.cs">
+      <DependentUpon>WinSup.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

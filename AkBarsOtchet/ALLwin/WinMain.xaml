@@ -35,6 +35,7 @@
             Background="White"
             BorderBrush="#006637"
             BorderThickness="3"
+            Click="BtnguideEmployee_Click"
             Content="Справочник сотрудников"
             Cursor="Hand" />
         <Button
@@ -47,14 +48,14 @@
             Background="White"
             BorderBrush="#006637"
             BorderThickness="3"
+            Click="btnguideSupEmployee_Click"
             Content="Справочник техподдержка"
             Cursor="Hand" />
         <Label
             x:Name="lbprof"
             Grid.Row="1"
-            Margin="0,19,0,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Content="Мой профиль" />
         <TextBox
             x:Name="tbPost"
@@ -69,7 +70,7 @@
             BorderThickness="3,3,3,3"
             Cursor="No"
             FontStyle="Italic"
-            IsReadOnly="True"
+            IsEnabled="False"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="tbFio"
@@ -84,7 +85,7 @@
             BorderThickness="3,3,3,3"
             Cursor="No"
             FontStyle="Italic"
-            IsReadOnly="True"
+            IsEnabled="False"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="tbDivision"
@@ -99,7 +100,7 @@
             BorderThickness="3,3,3,3"
             Cursor="No"
             FontStyle="Italic"
-            IsReadOnly="True"
+            IsEnabled="False"
             TextWrapping="Wrap" />
         <Label
             x:Name="lbFio"
@@ -140,7 +141,7 @@
             BorderBrush="#006637"
             BorderThickness="3"
             Content="Формирование отчёта"
-            Cursor="Hand"  />
+            Cursor="Hand" />
         <Button
             x:Name="btnProsmotrJornal"
             Grid.Row="3"
@@ -169,6 +170,21 @@
             ToolTip="Made by Krasnovich_GG">
             <Image x:Name="imageMain" Source="/Images/МЕД2.jpg" />
         </Border>
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="72,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="Дата и время : " />
+        <TextBlock
+            x:Name="tbTime"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="190,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap" />
 
     </Grid>
 </Window>
