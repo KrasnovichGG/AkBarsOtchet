@@ -16,7 +16,7 @@
         <ListView
             x:Name="lstOtchet"
             Margin="66,72,66,71"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3">
             <ListView.View>
                 <GridView>

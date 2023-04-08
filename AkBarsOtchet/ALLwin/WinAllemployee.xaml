@@ -14,7 +14,7 @@
         <ListView
             x:Name="LstAllEmployee"
             Margin="80,169,41,71"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             FontSize="13"
             IsEnabled="False">
@@ -35,11 +35,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border
-            Margin="22,20,617,316"
-            BorderBrush="#006637"
-            BorderThickness="3,3,3,3">
-            <Image x:Name="imageMain" Source="/Images/МЕД2.jpg" />
+        <Border Margin="22,20,617,316">
+            <Image x:Name="imageMain" Source="/Images/123 (1).png" />
         </Border>
         <Label
             x:Name="lbEmployee"
@@ -55,7 +52,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="White"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             Click="btnClose_Click"
             Content="Назад" />

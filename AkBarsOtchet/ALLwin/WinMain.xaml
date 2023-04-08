@@ -33,7 +33,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="White"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
             Click="BtnguideEmployee_Click"
             Content="Справочник сотрудников"
@@ -46,7 +46,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="White"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
             Click="btnguideSupEmployee_Click"
             Content="Справочник техподдержка"
@@ -66,7 +66,7 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             Cursor="No"
             FontStyle="Italic"
@@ -81,7 +81,7 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             Cursor="No"
             FontStyle="Italic"
@@ -96,7 +96,7 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             Cursor="No"
             FontStyle="Italic"
@@ -138,7 +138,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="White"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
             Content="Формирование отчёта"
             Cursor="Hand" />
@@ -151,7 +151,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="White"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
             Content="Просмотр журнара ремонта"
             Cursor="Hand" />
@@ -164,11 +164,9 @@
             Margin="0,80,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderBrush="#006637"
-            BorderThickness="3,3,3,3"
             Cursor="No"
             ToolTip="Made by Krasnovich_GG">
-            <Image x:Name="imageMain" Source="/Images/МЕД2.jpg" />
+            <Image x:Name="imageMain" Source="/Images/123 (1).png" />
         </Border>
         <Label
             Grid.Row="1"
