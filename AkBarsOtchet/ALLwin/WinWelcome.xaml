@@ -13,7 +13,8 @@
     FontSize="15"
     Icon="/Images/МЕД12.ico"
     ResizeMode="NoResize"
-    mc:Ignorable="d" ShowInTaskbar="False">
+    ShowInTaskbar="False"
+    mc:Ignorable="d">
     <Grid x:Name="GridWelc">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="401*" />
@@ -24,13 +25,11 @@
             Height="319"
             Margin="41,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            BorderBrush="#006637"
-            BorderThickness="5">
+            VerticalAlignment="Center">
             <Image
                 x:Name="ImgWelc"
                 Cursor="No"
-                Source="/Images/МЕД2.jpg"
+                Source="/Images/123 (1).png"
                 ToolTip="Made by Krasnovich_GG" />
         </Border>
         <TextBox
@@ -43,7 +42,7 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
             Cursor="Pen"
             FontStyle="Italic"
@@ -59,7 +58,7 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
             Cursor="Pen"
             FontStyle="Italic"
@@ -88,11 +87,12 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="White"
-            BorderBrush="#006637"
+            BorderBrush="#009630"
             BorderThickness="3"
+            Click="btnAuth_Click"
             Content="Войти"
             Cursor="Hand"
-            ToolTip="log in to the app" Click="btnAuth_Click" />
+            ToolTip="log in to the app" />
 
     </Grid>
 </Window>

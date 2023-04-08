@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ALLwin\WinJornalOtchet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ALLwin\WinMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +93,9 @@
     </Compile>
     <Compile Include="ALLwin\WinAllemployee.xaml.cs">
       <DependentUpon>WinAllemployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ALLwin\WinJornalOtchet.xaml.cs">
+      <DependentUpon>WinJornalOtchet.xaml</DependentUpon>
     </Compile>
     <Compile Include="ALLwin\WinMain.xaml.cs">
       <DependentUpon>WinMain.xaml</DependentUpon>
@@ -207,6 +214,7 @@
       <DependentUpon>Model123.edmx</DependentUpon>
       <LastGenOutput>Model123.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\123 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

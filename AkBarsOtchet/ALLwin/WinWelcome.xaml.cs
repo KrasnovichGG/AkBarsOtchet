@@ -40,6 +40,11 @@ namespace AkBarsOtchet
             }
             else foreach (var user in App.db.Users)
                 {
+                    if (user.isSup == false)
+                    {
+                        MessageBox.Show("К сожалению сотрудники не относящиеся к техподдержке не могут зайти в приложение!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                     if (user.Login_User == tbLog.Text.Trim())
                     {
                         if (user.Password_User == pbPass.Password.Trim())
