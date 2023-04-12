@@ -63,5 +63,11 @@
             VerticalAlignment="Top"
             Content="Поиск по ФИО"
             FontSize="10" />
+        <Label
+            x:Name="lblbl"
+            Margin="66,384,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="*Открытие журнала производится по двойному клику мыши*" />
     </Grid>
 </Window>
