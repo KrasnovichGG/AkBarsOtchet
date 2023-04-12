@@ -334,7 +334,7 @@
             Margin="66,372,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            BorderBrush="#009630"
+            BorderBrush="#FF1493"
             BorderThickness="3">
             <ComboBox
                 x:Name="CmbBoxUserSdal"
@@ -354,7 +354,7 @@
             Margin="66,453,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            BorderBrush="#009630"
+            BorderBrush="#FF1493"
             BorderThickness="3">
             <ComboBox
                 x:Name="UserPrinual"

@@ -161,9 +161,9 @@ namespace AkBarsOtchet.ALLwin
 
         private void bntADDtoDB_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNameOBJ.Text == "" || tbinventNumber.Text == "" || tb_Damage_def.Text == "" || cmbboxbynew.SelectedIndex == -1)
+            if (tbNameOBJ.Text == "" || tbinventNumber.Text == "" || tb_Damage_def.Text == "" || cmbboxbynew.SelectedIndex == -1 || UserPrinual.SelectedIndex == -1)
             {
-                MessageBox.Show("Поля, такие как : Объект основных средств, Инвентарный номер, Дефекты и повреждения, б/у или новая. Должны быть заполнены в обязательном порядке!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поля,которые выделены розовым цветом, должны быть заполнены в обязательном порядке!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
@@ -175,7 +175,11 @@ namespace AkBarsOtchet.ALLwin
                     Cons.Name = tbnamecost.Text.Trim();
                     Cons.Serial_Number = tbserialnumber.Text.Trim();
                     Cons.BY_or_NEW = cmbboxbynew.Text.Trim();
-                    Cons.Cost = Convert.ToDecimal(tbCostNew.Text.Trim());
+                    if(!String.IsNullOrWhiteSpace(tbCostNew.Text))
+                    {
+                        Cons.Cost = Convert.ToDecimal(tbCostNew.Text.Trim());
+                    }
+                    
                 }
                 App.db.Consumables.Add(Cons);
                 var Obj = new Object_of_Fixed_Assets();
@@ -183,7 +187,10 @@ namespace AkBarsOtchet.ALLwin
                     Obj.Id_Object = Obj.Id_Object;
                     Obj.Name_Obj = tbNameOBJ.Text.Trim();
                     Obj.Inventory_Number = tbinventNumber.Text.Trim();
-                    Obj.Replacement_Cost = Convert.ToDecimal(tb_ReplacementCost.Text.Trim());
+                    if (!String.IsNullOrWhiteSpace(tb_ReplacementCost.Text))
+                    {
+                        Obj.Replacement_Cost = Convert.ToDecimal(tb_ReplacementCost.Text.Trim());
+                    }
                     if (tb_ActualServiceLife.Text == "1")
                     {
                         Obj.Actual_Service_Life = $"{tb_ActualServiceLife.Text}" + " год";

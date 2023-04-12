@@ -13,7 +13,7 @@
     <Grid>
         <ListView
             x:Name="LstAllEmployee"
-            Margin="80,169,41,71"
+            Margin="80,151,41,89"
             BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             FontSize="13"
@@ -49,7 +49,7 @@
             x:Name="btnCloseEmployee"
             Width="140"
             Height="35"
-            Margin="0,403,0,0"
+            Margin="0,391,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="White"
