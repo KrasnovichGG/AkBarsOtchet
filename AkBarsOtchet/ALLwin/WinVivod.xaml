@@ -311,10 +311,20 @@
             Margin="0,472,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Background="White"
+            Background="#FF97FF00"
             BorderBrush="#009630"
             BorderThickness="3"
-            Content="Сформировать отчёт" Click="btnFormOtchet_Click" />
+            Click="btnFormOtchet_Click"
+            Content="Сформировать отчёт"
+            FontSize="20">
+            <Button.Effect>
+                <DropShadowEffect
+                    Direction="310"
+                    Opacity="1"
+                    ShadowDepth="15"
+                    Color="Black" />
+            </Button.Effect>
+        </Button>
         <Label
             x:Name="lbUserSup"
             Margin="66,345,0,0"

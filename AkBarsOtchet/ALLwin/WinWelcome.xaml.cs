@@ -56,7 +56,7 @@ namespace AkBarsOtchet
                 }
             if (App.users == null)
             {
-                MessageBox.Show("Такого пользователя не существует,либо этот пользователь не сотрудник техподдержки", "Что-то не так", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Такого пользователя не существует!", "Что-то не так", MessageBoxButton.OK, MessageBoxImage.Error);
                 tbLog.Clear();
                 pbPass.Clear();
                 return;

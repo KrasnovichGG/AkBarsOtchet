@@ -47,7 +47,8 @@
             FontSize="20" />
         <Button
             x:Name="btnCloseEmployee"
-            Width="90"
+            Width="140"
+            Height="35"
             Margin="0,403,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
@@ -55,6 +56,14 @@
             BorderBrush="#009630"
             BorderThickness="3,3,3,3"
             Click="btnClose_Click"
-            Content="Назад" />
+            Content="Назад">
+            <Button.Effect>
+                <DropShadowEffect
+                    Direction="310"
+                    Opacity="0.5"
+                    ShadowDepth="15"
+                    Color="#FF97FF00" />
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>

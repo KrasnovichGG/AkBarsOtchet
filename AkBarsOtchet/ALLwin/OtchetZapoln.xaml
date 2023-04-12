@@ -274,7 +274,7 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" PreviewTextInput="tbCostNew_PreviewTextInput_1" />
         <Label
             x:Name="LBCOST"
             Margin="1167,214,0,0"
@@ -376,11 +376,20 @@
             Margin="563,463,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="White"
+            Background="#FF97FF00"
             BorderBrush="#009630"
             BorderThickness="3"
             Click="bntADDtoDB_Click"
-            Content="Добавить отчёт в БД" />
+            Content="Добавить отчёт в БД"
+            FontSize="20">
+            <Button.Effect>
+                <DropShadowEffect
+                    Direction="310"
+                    Opacity="1"
+                    ShadowDepth="15"
+                    Color="Black" />
+            </Button.Effect>
+        </Button>
         <DatePicker
             x:Name="dpStart"
             Margin="1097,450,0,0"
@@ -390,7 +399,8 @@
             x:Name="dpEnd"
             Margin="1251,450,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" SelectedDateChanged="dpEnd_SelectedDateChanged" />
+            VerticalAlignment="Top"
+            SelectedDateChanged="dpEnd_SelectedDateChanged" />
         <Label
             x:Name="lbstart"
             Margin="1093,419,0,0"
@@ -431,11 +441,19 @@
             Margin="929,531,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="White"
+            Background="#FF97FF00"
             BorderBrush="#009630"
             BorderThickness="3"
             Click="btnClear_Click"
-            Content="Очистить форму!" />
+            Content="Очистить форму!">
+            <Button.Effect>
+                <DropShadowEffect
+                    Direction="310"
+                    Opacity="0.7"
+                    ShadowDepth="15"
+                    Color="Black" />
+            </Button.Effect>
+        </Button>
 
 
     </Grid>
