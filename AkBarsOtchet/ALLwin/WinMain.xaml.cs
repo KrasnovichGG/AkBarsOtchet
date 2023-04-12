@@ -59,5 +59,17 @@ namespace AkBarsOtchet.ALLwin
             WinAllemployee winAllemployee = new WinAllemployee();
             winAllemployee.ShowDialog();
         }
+
+        private void btnOtchet_Click(object sender, RoutedEventArgs e)
+        {
+            OtchetZapoln otchetZapoln = new OtchetZapoln();
+            otchetZapoln.Show();
+        }
+
+        private void btnProsmotrJornal_Click(object sender, RoutedEventArgs e)
+        {
+            WinJornalOtchet winJornalOtchet = new WinJornalOtchet();
+            winJornalOtchet.Show();
+        }
     }
 }

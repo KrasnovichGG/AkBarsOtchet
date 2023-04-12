@@ -17,7 +17,7 @@
             x:Name="lstOtchet"
             Margin="66,72,66,71"
             BorderBrush="#009630"
-            BorderThickness="3">
+            BorderThickness="3" SelectionChanged="lstOtchet_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

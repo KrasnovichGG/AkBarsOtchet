@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AkBarsOtchet.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace AkBarsOtchet.ALLwin
         {
             InitializeComponent();
             lstOtchet.ItemsSource = App.db.Repair_Order.ToList();
+        }
+
+        private void lstOtchet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (Repair_Order)lstOtchet.SelectedItem;
+            new WinVivod(item).Show();
         }
     }
 }

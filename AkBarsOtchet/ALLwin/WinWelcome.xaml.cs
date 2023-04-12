@@ -40,14 +40,10 @@ namespace AkBarsOtchet
             }
             else foreach (var user in App.db.Users)
                 {
-                    if (user.isSup == false)
+                   
+                    if (user.Login_User == tbLog.Text.Trim() && user.isSup == true)
                     {
-                        MessageBox.Show("К сожалению сотрудники не относящиеся к техподдержке не могут зайти в приложение!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    if (user.Login_User == tbLog.Text.Trim())
-                    {
-                        if (user.Password_User == pbPass.Password.Trim())
+                        if (user.Password_User == pbPass.Password.Trim() )
                         {
                             MessageBox.Show($"Добро пожаловать:  {user.FIO}", "С возвращением!", MessageBoxButton.OK, MessageBoxImage.Information);
                             App.users = user;
@@ -60,7 +56,7 @@ namespace AkBarsOtchet
                 }
             if (App.users == null)
             {
-                MessageBox.Show("Такого пользователя не существует!", "Что-то не так", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Такого пользователя не существует,либо этот пользователь не сотрудник техподдержки", "Что-то не так", MessageBoxButton.OK, MessageBoxImage.Error);
                 tbLog.Clear();
                 pbPass.Clear();
                 return;
