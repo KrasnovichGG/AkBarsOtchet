@@ -39,6 +39,11 @@
             Click="BtnguideEmployee_Click"
             Content="Справочник сотрудников"
             Cursor="Hand">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"
@@ -61,6 +66,11 @@
             Click="btnguideSupEmployee_Click"
             Content="Справочник техподдержка"
             Cursor="Hand">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"
@@ -155,6 +165,11 @@
             Click="btnOtchet_Click"
             Content="Формирование отчёта"
             Cursor="Hand">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"
@@ -178,6 +193,11 @@
             Click="btnProsmotrJornal_Click"
             Content="Просмотр журнара ремонта"
             Cursor="Hand">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"

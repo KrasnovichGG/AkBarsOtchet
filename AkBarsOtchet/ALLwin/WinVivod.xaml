@@ -306,9 +306,9 @@
             FontSize="12" />
         <Button
             x:Name="btnFormOtchet"
-            Width="349"
-            Height="102"
-            Margin="0,472,0,0"
+            Width="308"
+            Height="68"
+            Margin="0,455,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#FF97FF00"
@@ -317,6 +317,11 @@
             Click="btnFormOtchet_Click"
             Content="Сформировать отчёт"
             FontSize="20">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"

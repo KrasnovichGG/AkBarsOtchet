@@ -79,6 +79,7 @@
             VerticalAlignment="Top"
             Content="Пароль" />
         <Button
+            
             x:Name="btnAuth"
             Grid.Column="1"
             Width="132"
@@ -100,6 +101,11 @@
                     ShadowDepth="15"
                     Color="#FF97FF00" />
             </Button.Effect>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
         </Button>
 
     </Grid>

@@ -274,7 +274,8 @@
             FontSize="12"
             FontStyle="Italic"
             FontWeight="Normal"
-            TextWrapping="Wrap" PreviewTextInput="tbCostNew_PreviewTextInput_1" />
+            PreviewTextInput="tbCostNew_PreviewTextInput_1"
+            TextWrapping="Wrap" />
         <Label
             x:Name="LBCOST"
             Margin="1167,214,0,0"
@@ -371,9 +372,9 @@
             FontSize="12" />
         <Button
             x:Name="bntADDtoDB"
-            Width="312"
-            Height="108"
-            Margin="563,463,0,0"
+            Width="262"
+            Height="70"
+            Margin="421,364,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF97FF00"
@@ -382,6 +383,11 @@
             Click="bntADDtoDB_Click"
             Content="Добавить отчёт в БД"
             FontSize="20">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"
@@ -436,16 +442,22 @@
             FontSize="17" />
         <Button
             x:Name="btnClear"
-            Width="170"
-            Height="40"
-            Margin="929,531,0,0"
+            Width="262"
+            Height="70"
+            Margin="765,364,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF97FF00"
             BorderBrush="#009630"
             BorderThickness="3"
             Click="btnClear_Click"
-            Content="Очистить форму!">
+            Content="Очистить форму!"
+            FontSize="20">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"

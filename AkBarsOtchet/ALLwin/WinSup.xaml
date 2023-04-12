@@ -55,6 +55,11 @@
             BorderThickness="3,3,3,3"
             Click="btnClose_Click"
             Content="Назад">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
             <Button.Effect>
                 <DropShadowEffect
                     Direction="310"
