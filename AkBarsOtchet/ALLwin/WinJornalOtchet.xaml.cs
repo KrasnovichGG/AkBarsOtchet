@@ -31,5 +31,12 @@ namespace AkBarsOtchet.ALLwin
             var item = (Repair_Order)lstOtchet.SelectedItem;
             new WinVivod(item).Show();
         }
+
+        private void tbpoisk_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var res = App.db.Repair_Order.ToList();
+            res = res.Where(x => x.Users.FIO.ToLower().Contains(tbpoisk.Text.ToLower())).ToList();
+            lstOtchet.ItemsSource = res.ToList();
+        }
     }
 }

@@ -17,7 +17,8 @@
             x:Name="lstOtchet"
             Margin="66,72,66,71"
             BorderBrush="#009630"
-            BorderThickness="3" SelectionChanged="lstOtchet_SelectionChanged">
+            BorderThickness="3"
+            SelectionChanged="lstOtchet_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -45,5 +46,22 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Журнал отчётов" />
+        <TextBox
+            x:Name="tbpoisk"
+            Width="160"
+            Margin="637,26,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            BorderBrush="#009630"
+            BorderThickness="3"
+            TextChanged="tbpoisk_TextChanged"
+            TextWrapping="Wrap" />
+        <Label
+            x:Name="lbpoisk"
+            Margin="637,4,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Поиск по ФИО"
+            FontSize="10" />
     </Grid>
 </Window>

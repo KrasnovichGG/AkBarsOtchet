@@ -39,19 +39,19 @@ namespace AkBarsOtchet.ALLwin
             tb_Damage_def.Text = repair_Order.Damage_Defects;
             tbTypeRepair.Text = repair_Order.Type_Repair_Obj;
             tbNote.Text = repair_Order.Note;
-            tb_NachRepair.Text = Convert.ToString(repair_Order.Start_Date_Repair);
-            tb_andRepair.Text = Convert.ToString(repair_Order.End_Date_Repair);
+            tb_NachRepair.Text = Convert.ToString((repair_Order.Start_Date_Repair ?? DateTime.Now).ToString("dd.MM.yyyy"));
+            tb_andRepair.Text = Convert.ToString((repair_Order.End_Date_Repair ?? DateTime.Now).ToString("dd.MM.yyyy"));
             tb_sdal_obj.Text = repair_Order.Users.FIO;
-            tb_prinal_obj.Text = repair_Order.Users.FIO;
+            tb_prinal_obj.Text = App.db.Users.Where(x=>x.Id_User == repair_Order.IdUserPrinayl).FirstOrDefault().FIO;
         }
 
-        private void btnFormOtchet_Click(object sender, RoutedEventArgs e)
+        private async void btnFormOtchet_Click(object sender, RoutedEventArgs e)
         {
             var mergeData = new MergeData();
             var objFirst = new List<ObjectRepair1>() { new ObjectRepair1() };
             var objSecond = new List<ObjectRepair2>() { new ObjectRepair2() };
-            mergeData.UserPrinal.FIO = tb_prinal_obj.Text;
-            mergeData.UserSdal.FIO = tb_sdal_obj.Text;
+            mergeData.UserPrinal = App.db.Users.Where(x => x.FIO == tb_prinal_obj.Text).FirstOrDefault();
+            mergeData.UserSdal = App.db.Users.Where(x=>x.FIO == tb_sdal_obj.Text).FirstOrDefault();
             objFirst[0].MainObject = tbNameOBJ.Text.Trim();
             objFirst[0].InventoryNumber = tbinventNumber.Text.Trim();
             objFirst[0].ReplacementCost = tb_ReplacementCost.Text.Trim();
@@ -68,13 +68,13 @@ namespace AkBarsOtchet.ALLwin
             objSecond[0].Note = tbNote.Text.Trim();
             mergeData.DateSost = DateTime.Now.ToString("dd.MM.yyyy");
             mergeData.DateZayvka = DateTime.Now.ToString("dd.MM.yyyy");
-            mergeData.DateStartRepair = Convert.ToDateTime(tb_NachRepair.Text).ToString("dd.MM.yyyy"); /*Convert.ToDateTime(dpStart.SelectedDate).ToString("dd.MM.yyyy");*/
-            mergeData.DateEndRepair = Convert.ToDateTime(tb_andRepair.Text).ToString("dd.MM.yyyy"); /*Convert.ToDateTime(dpEnd.SelectedDate).ToString("dd.MM.yyyy");*/
+            mergeData.DateStartRepair = tb_NachRepair.Text; /*Convert.ToDateTime(dpStart.SelectedDate).ToString("dd.MM.yyyy");*/
+            mergeData.DateEndRepair = tb_andRepair.Text; /*Convert.ToDateTime(dpEnd.SelectedDate).ToString("dd.MM.yyyy");*/
             mergeData.ObjRepair1 = objFirst;
             mergeData.ObjRepair2 = objSecond;
-            SetDataExcel(mergeData);
+            await Task.Run(() => SetDataExcel(mergeData));
         }
-        public static void SetDataExcel(MergeData objects)
+        public async static Task SetDataExcel(MergeData objects)
         {
             Microsoft.Office.Interop.Excel.Application oXL;
             _Workbook oWB;
@@ -83,9 +83,10 @@ namespace AkBarsOtchet.ALLwin
             {
                 oXL = new Microsoft.Office.Interop.Excel.Application();
                 oXL.Visible = false;
-                oWB = oXL.Workbooks.Open(@"C:\Users\Lapte\Desktop\ОтчётАкБарсМед.xlsx");
+                oWB = oXL.Workbooks.Open(@"C:\Users\Lapte\Desktop\Копия ОтчётАкБарсМед.xlsx");
                 oSheet = oWB.Worksheets[1];
-                oSheet.get_Range("A19", "FW15").Font.Bold = true;
+                oSheet.get_Range("A18", "EV18").Font.Bold = true;
+                oSheet.get_Range("A25", "ET25").Font.Bold = true;
                 oSheet.get_Range("A19", "FW25").VerticalAlignment =
                 XlVAlign.xlVAlignCenter;
                 oSheet.Cells[10, 65] = objects.DateSost;
@@ -107,7 +108,7 @@ namespace AkBarsOtchet.ALLwin
                 oSheet.Cells[25, 138] = objects.ObjRepair2[0].Cost; //Стоимость(для новых) EH25
                 oSheet.Cells[25, 150] = objects.ObjRepair2[0].Note; //Примечание ET25
                 oSheet.Cells[50, 90] = objects.UserSdal.FIO; //Расшифровка подписи сапорта CL50 вылетает какая-то неизвесная ошибка(страшная)
-                oSheet.Cells[50, 29] = objects.UserSdal.S_Posts.Name_Post; //Должность сапорта AC50
+                 oSheet.Cells[50, 29] = objects.UserSdal.S_Posts.Name_Post; //Должность сапорта AC50
                 oSheet.Cells[53, 90] = objects.UserPrinal.FIO; //Расшифровка подписи не сапорта CL53
                 oSheet.Cells[53, 29] = objects.UserPrinal.S_Posts.Name_Post; //Должность не сапорта несапорта AC53
                 oXL.Visible = true;
@@ -129,7 +130,8 @@ namespace AkBarsOtchet.ALLwin
     {
         public MergeData()
         {
-
+            UserSdal = new Users();
+            UserPrinal = new Users();
         }
 
         public MergeData(string numberOrder, string dateSost, string dateZayvka, string dateStartRepair, string dateEndRepair, List<ObjectRepair1> objRepair1, List<ObjectRepair2> objRepair2, Users userSdal, Users userPrinal)

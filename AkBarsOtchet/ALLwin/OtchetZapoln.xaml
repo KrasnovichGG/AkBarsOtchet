@@ -390,7 +390,7 @@
             x:Name="dpEnd"
             Margin="1251,450,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top" SelectedDateChanged="dpEnd_SelectedDateChanged" />
         <Label
             x:Name="lbstart"
             Margin="1093,419,0,0"

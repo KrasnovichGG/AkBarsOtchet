@@ -273,7 +273,16 @@ namespace AkBarsOtchet.ALLwin
             }
         }
 
-        
+        private void dpEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dpEnd.SelectedDate < dpStart.SelectedDate)
+            {
+                e.Handled = false;
+                dpEnd.SelectedDate = DateTime.Now;
+                MessageBox.Show("Дата конца не может быть больше даты начала!");
+                return;
+            }
+        }
     }
 
     //public class MergeData

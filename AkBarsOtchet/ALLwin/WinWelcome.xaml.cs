@@ -27,11 +27,11 @@ namespace AkBarsOtchet
             InitializeComponent();
         }
 
-        private void btnAuth_Click(object sender, RoutedEventArgs e)
+        private async void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            AuthUser();
+            await AuthUser();
         }
-        private void AuthUser()
+        private async Task AuthUser()
         {
             if (tbLog.Text == "" || pbPass.Password == "")
             {
